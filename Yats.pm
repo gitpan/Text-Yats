@@ -1,4 +1,4 @@
-#---------------------------------------------------------------------
+#
 # Yats.pm
 # Last Modification: 2002/01/07 (hdias@esb.ucp.pt)
 #
@@ -6,14 +6,17 @@
 # This module is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
 #
-#---------------------------------------------------------------------
+#
+
 package Text::Yats;
+  
+require 5;
 use strict;
+
 require Exporter;
 use vars qw($VERSION @ISA @EXPORT);
 @ISA = qw(Exporter DynaLoader);
-$VERSION = 0.02;
-require 5;
+$VERSION = '0.03';
 
 sub new {
 	my $proto = shift;
@@ -116,5 +119,4 @@ sub get_text {
 }
 
 1;
-
 __END__

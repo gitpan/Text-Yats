@@ -12,7 +12,7 @@ print "ok 2\n";
 
 $tpl->section->[0]->replace(
 		title      => "Yats",
-		version    => "0.02", ) or print "not ";
+		version    => "$Text::Yats::VERSION", ) or print "not ";
 
 print "ok 3\n";
 

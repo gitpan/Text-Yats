@@ -1,9 +1,9 @@
 =pod
 
 =head1 NAME
- 
+
 Text::Yats - Yet Another Templete System
- 
+
 =head1 SYNOPSIS
 
   use Text::Yats;
@@ -25,18 +25,18 @@ ENDHTML
 
   my $result = "";
   my $tpl = Text::Yats->new(
-		level => 1,
-		text  => $template);
+                level => 1,
+                text  => $template);
 
   $result .= $tpl->section->[0]->replace(
-		title      => "Yats",
-		version    => "0.02", );
+                title      => "Yats",
+                version    => "Development", );
 
   $result .= $tpl->section->[1]->replace(
-		list       => ['hdias','anita','cubitos'],
-        	selected   => { value => "selected",
-				array => "list",
-				match => "anita", } );
+                list       => ['hdias','anita','cubitos'],
+                selected   => { value => "selected",
+                                array => "list",
+                                match => "anita", } );
 
   $result .= $tpl->section->[2]->text;
   print $result;
@@ -45,8 +45,8 @@ ENDHTML
 
 <html>
 <head>
-<title>Yats - 0.02</title>
-</head>  
+<title>Yats - Development</title>
+</head>
 <body>
 <form>
 <select name="names">
@@ -68,8 +68,8 @@ template without modifying the program.
   use Text::Yats;
 
   my $tpl = Text::Yats->new(
-		level => 1,
-		file  => "templates/test.txt");
+                level => 1,
+                file  => "templates/test.txt");
 
 =head1 METHODS
 
@@ -82,7 +82,7 @@ least one key => value pair.
 
 =item file
 
-This is the name of the template to be loaded. It can be an absolute or 
+This is the name of the template to be loaded. It can be an absolute or
 relative pathname.
 
 =item text
@@ -157,15 +157,15 @@ var_b => "e",
 
 =item hash reference
 
-var_c => { value => "selected", # hash ref
+var_c => { value => "selected",
            array => "var_a",
-           match => "c", } 
+           match => "c", }
 
 Replace var_c with "selected" when it finds "c"
 
 var_c => { value => "selected",
            array => "var_a",
-           match => ["b","d"],
+           match => ["b","d"], }
 
 Replace var_c with "selected" when it finds "b" or "d"
 
@@ -181,7 +181,7 @@ Henrique Dias <hdias@esb.ucp.pt>
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SEE ALSO
 

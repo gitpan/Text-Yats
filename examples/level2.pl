@@ -8,7 +8,7 @@ my $tpl = Text::Yats->new(
 
 print $tpl->section->[0]->replace(
 		title      => "Yats",
-		version    => "0.02", );
+		version    => "$Text::Yats::VERSION", );
 
 print $tpl->section->[1]->section->[0]->replace(
 		list       => ['hdias','anita','cubitos'],

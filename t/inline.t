@@ -6,7 +6,7 @@ print "ok 1\n";
 
 my $tpl = Text::Yats->new(
 		level => 1,
-		file  => "templates/form.html") or print "not ";
+		file  => "templates/inline.html") or print "not ";
 
 print "ok 2\n";
 
@@ -17,7 +17,6 @@ $tpl->section->[0]->replace(
 print "ok 3\n";
 
 $tpl->section->[1]->replace(
-		list       => ['hdias','anita','cubitos'],
 		selected   => { value => "selected",
 				array => "list",
 				match => "anita", }) or print "not ";

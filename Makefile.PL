@@ -4,19 +4,17 @@ use ExtUtils::MakeMaker;
 
 my @ppd;
 if ($] >= 5.00503) {
-	@ppd = (
-		AUTHOR    => 'Henrique Dias <hdias@esb.ucp.pt>',
-		ABSTRACT  => 'Yet Another Templete System'
-	);
+    @ppd = (
+        'AUTHOR'	=> 'Henrique Dias <hdias@esb.ucp.pt>',
+        'ABSTRACT'	=> 'Yet Another Templete System',
+    );
 }
 
 WriteMakefile(
-	'NAME'      => "Text::Yats",
-	'DISTNAME'  => "Text-Yats",
-	'VERSION_FROM' => "Yats.pm", # finds $VERSION
-	'dist' => {  
-		COMPRESS => "gzip -9f",
-		SUFFIX => "gz",
-		},
-	@ppd
+    'NAME'		=> 'Text::Yats',
+    'DISTNAME'          => 'Text-Yats',
+    'VERSION_FROM'	=> 'Yats.pm', # finds $VERSION
+    'PREREQ_PM'		=> {}, # e.g., Module::Name => 1.1
+    'dist'		=> { 'COMPRESS' => 'gzip -9f', 'SUFFIX' => 'gz', },
+    @ppd,
 );
