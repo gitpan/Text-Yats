@@ -12,7 +12,7 @@ print "ok 2\n";
 
 $tpl->section->[0]->replace(
 		title      => "Yats",
-		version    => "0.01", ) or print "not ";
+		version    => "0.02", ) or print "not ";
 
 print "ok 3\n";
 
@@ -31,11 +31,11 @@ $tpl->section->[1]->section->[1]->replace(
 				match => "anita", }) or print "not ";
 
 $tpl->section->[1]->section->[2]->replace(
-		list       => ['hdias','anita','cubitos'],
-		value      => [1,2,3],
+		list       => ['hdias','anita','cubitos','cindy'],
+		value      => [1,2,3,4],
 		selected   => { value => "selected",
 				array => "list",
-				match => "anita", }) or print "not ";
+				match => ["anita","cindy"], }) or print "not ";
 
 print "ok 4\n";
 

@@ -1,6 +1,6 @@
 #---------------------------------------------------------------------
 # Yats.pm
-# Last Modification: 2001/12/20 (hdias@esb.ucp.pt)
+# Last Modification: 2002/01/07 (hdias@esb.ucp.pt)
 #
 # Copyright (c) 2001 Henrique Dias. All rights reserved.
 # This module is free software; you can redistribute it and/or modify
@@ -12,7 +12,7 @@ use strict;
 require Exporter;
 use vars qw($VERSION @ISA @EXPORT);
 @ISA = qw(Exporter DynaLoader);
-$VERSION = 0.01;
+$VERSION = 0.02;
 require 5;
 
 sub new {
@@ -61,22 +61,13 @@ sub replace {
 			$param->{$1} = [eval($2)];
 		}
 		for(keys(%{$param})) {
-			if(ref($param->{$_}) eq "HASH") {
-				my @matched = ();
-				my $match = "";
-				for my $e (@{$param->{$param->{$_}->{array}}}) {
-					$match = ($e eq $param->{$_}->{match}) ? $param->{$_}->{value} : "";
-					push(@matched, $match);
-					last if($match);
-				}
-				$param->{$_} = \@matched;
-			}
+			$param->{$_} = &make_array($param->{$param->{$_}->{array}},$param->{$_}->{match},$param->{$_}->{value})
+				if(ref($param->{$_}) eq "HASH");
 			if(ref($param->{$_}) eq "ARRAY") {
 				my $maxtmp = $#{$param->{$_}};
-				$max = $maxtmp unless($i && ($maxtmp <= $max));
-				$param->{$_}->[$i] = "" if($i > $maxtmp);
-				$tmp =~ s/\$$_\b/$param->{$_}->[$i]/g;
-				$tmp =~ s/ +>/>/g;
+				$max = $maxtmp unless($maxtmp <= $max);
+				if(($i <= $maxtmp) && ($param->{$_}->[$i] ne "")) { $tmp =~ s/\$$_\b/$param->{$_}->[$i]/g; }
+				else { $tmp =~ s/ ?\$$_\b//g; }
 			} else { $tmp =~ s/\$$_\b/$param->{$_}/g; }
 		}
 		$text .= $tmp;
@@ -84,6 +75,20 @@ sub replace {
 		$i++;
 	}
 	return($text);
+}
+
+sub make_array {
+	my ($array, $match, $value) = @_;
+
+	my @matched = ();
+	$#matched = $#{$array};
+	my %keys = ();
+	if(ref($match) eq "ARRAY") { @keys{@{$match}} = (); }
+	else { $keys{$match} = ""; }
+	for my $j (0 .. $#{$array}) {
+		$matched[$j] = (exists($keys{$array->[$j]})) ? $value : "";
+	}
+	return(\@matched);
 }
 
 sub text {

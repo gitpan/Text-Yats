@@ -30,7 +30,7 @@ ENDHTML
 
   $result .= $tpl->section->[0]->replace(
 		title      => "Yats",
-		version    => "0.01", );
+		version    => "0.02", );
 
   $result .= $tpl->section->[1]->replace(
 		list       => ['hdias','anita','cubitos'],
@@ -45,7 +45,7 @@ ENDHTML
 
 <html>
 <head>
-<title>Yats - 0.01</title>
+<title>Yats - 0.02</title>
 </head>  
 <body>
 <form>
@@ -149,7 +149,7 @@ parameters in three forms (you can mix them if you want):
 
 =item array reference
 
-var_a => ["a","b","c","d"],
+var_a => ["a","b","c","d","e"],
 
 =item scalar value
 
@@ -160,6 +160,14 @@ var_b => "e",
 var_c => { value => "selected", # hash ref
            array => "var_a",
            match => "c", } 
+
+Replace var_c with "selected" when it finds "c"
+
+var_c => { value => "selected",
+           array => "var_a",
+           match => ["b","d"],
+
+Replace var_c with "selected" when it finds "b" or "d"
 
 =back
 
@@ -173,7 +181,7 @@ Henrique Dias <hdias@esb.ucp.pt>
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SEE ALSO
 

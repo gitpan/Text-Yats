@@ -8,7 +8,7 @@ my $tpl = Text::Yats->new(
 
 print $tpl->section->[0]->replace(
 		title      => "Yats",
-		version    => "0.01", );
+		version    => "0.02", );
 
 print $tpl->section->[1]->section->[0]->replace(
 		list       => ['hdias','anita','cubitos'],
@@ -25,13 +25,13 @@ print $tpl->section->[1]->section->[1]->replace(
 				match => "anita", });
 
 print $tpl->section->[1]->section->[2]->replace(
-		list       => ['hdias','anita','cubitos'],
-		value      => [1,2,3],
+		list       => ['hdias','anita','cubitos','cindy'],
+		value      => [1,2,3,4],
 		selected   => { value => "selected",
 				array => "list",
-				match => "anita", });
+				match => ["anita","cindy"], }) or print "not ";
 
-print$tpl->section->[2]->text;
+print $tpl->section->[2]->text;
 
 undef $tpl;
 
